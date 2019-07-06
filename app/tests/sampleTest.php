@@ -20,4 +20,11 @@ class SampleTest extends TestCase
         $current = siteVersion();
         $this->expectOutputString($value);
     }
+
+    public function testPhpVersion() 
+    {
+        $php_version = phpversion();
+        $php_required_version = config('php_version');
+        $this->assertContains($php_required_version, $php_version, 'Wrong PHP version');
+    }
 }
