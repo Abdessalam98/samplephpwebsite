@@ -27,4 +27,13 @@ class SampleTest extends TestCase
         $php_required_version = config('php_version');
         $this->assertContains($php_required_version, $php_version, 'Wrong PHP version');
     }
+
+    public function testPhpModules() {
+        $hasAllRequiredModules = [];
+        $extensions = config('php_modules');
+        foreach ($extensions as $extension) {
+            array_push($hasAllRequiredModules, extension_loaded($extension));
+        }
+        $this->assertTrue(!in_array(false, $hasAllRequiredModules, true));
+    }
 }
