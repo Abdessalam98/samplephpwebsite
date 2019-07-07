@@ -20,3 +20,5 @@
 /vendors/*
 /vendor/*
 /config/app.php
+/docker/mariadb/data/*
+jenkins_home/
