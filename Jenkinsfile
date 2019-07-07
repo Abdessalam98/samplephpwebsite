@@ -1,10 +1,6 @@
 node {
     def commit_id
 
-    triggers{ 
-        cron('H/60 * * * *') 
-    }
-
     stage('Start') {
         checkout scm
         echo "${env.BUILD_NUMBER}"
