@@ -1,6 +1,10 @@
 node {
     def commit_id
-    
+
+    triggers{ 
+        cron('H/60 * * * *') 
+    }
+
     stage('Start') {
         checkout scm
         echo "${env.BUILD_NUMBER}"
@@ -17,11 +21,15 @@ node {
     }   
 
     stage('Build') {
-        // sh "docker build -t php-image:${commit_id} ./docker/php"
         sh "docker build -t php-image:${env.BRANCH_NAME}-build-${env.BUILD_NUMBER} ./docker/php"
     }
 
     stage('Deploy'){
         echo 'Push to Repo'
+    }
+
+    stage('Remove docker components') {
+        sh "docker docker container rm -f php-test-${env.BUILD_NUMBER}"
+        sh "docker image rm -f php-image-test-${env.BUILD_NUMBER}"
     }
 }
