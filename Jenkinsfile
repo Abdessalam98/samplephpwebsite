@@ -13,7 +13,7 @@ node {
         sh "docker build -t php-image-test-${env.BUILD_NUMBER} ./docker/php"
         sh "docker run --name php-test-${env.BUILD_NUMBER} -d -v app:/app php-image-test-${env.BUILD_NUMBER}"
         sh "docker cp ./app/. php-test-${env.BUILD_NUMBER}:/app/"
-        sh "docker exec php-test-${env.BUILD_NUMBER} sh -c 'cd /app && phpunit tests/sampleTest.php'
+        sh "docker exec php-test-${env.BUILD_NUMBER} sh -c 'cd /app && phpunit tests/sampleTest.php'"
     }   
 
     stage('Build') {
