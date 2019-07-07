@@ -1,4 +1,4 @@
-job('Test site job’) {
+job('Test site job') {
     scm {
         git('https://github.com/Abdessalam98/samplephpwebsite', 'v2') { node ->
             node / gitConfigName('Abdessalam BENHARIRA')
