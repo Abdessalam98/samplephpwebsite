@@ -25,7 +25,7 @@ node {
     }
 
     stage('Remove docker components') {
-        sh "docker container rm php-test-${env.BUILD_NUMBER}"
-        sh "docker image rm -f php-image-test-${env.BUILD_NUMBER}"
+        sh "docker container rm php-test-${env.BUILD_NUMBER} -f"
+        sh "docker image rmi php-image-test-${env.BUILD_NUMBER} -f"
     }
 }
