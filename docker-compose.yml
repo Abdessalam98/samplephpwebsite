@@ -39,6 +39,14 @@ services:
       - ./docker/mariadb/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - samplephpwebsite_default
+  jenkins:
+    build:
+      context: ./docker/jenkins
+      dockerfile: Dockerfile
+    ports:
+      - 8081:8080
+    volumes:
+      - ./jenkins_home:/var/jenkins_home 
 
 networks:
   samplephpwebsite_default:
