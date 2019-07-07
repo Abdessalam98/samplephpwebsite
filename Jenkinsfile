@@ -11,7 +11,10 @@ node {
     }
 
     stage('Test') {
-        sh 'phpunit app/tests/sampleTests.php'
+        sh 'cat docker-compose.yml'
+        sh 'docker-compose up -d php'
+        sh 'docker-compose up -d php php -v'
+        sh 'docker-compose exec -T php phpunit tests/sampleTest.php'
     }   
 
     stage('Build') {
