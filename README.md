@@ -70,6 +70,13 @@ $ docker-compose up -d
 
 Open browser and see the rendered pages
 
+You can use `start.sh`
+
+```bash
+chmod +x start.sh
+./start.sh
+```
+
 ## ✅ Testing app with PHPUnit
 
 PHPUnit is already set. You can directly run tests inside the PHP container. All tests are in `./app/tests`
@@ -93,17 +100,13 @@ You can also remove it from `./docker-compose.yml` and run this command on your 
 $ docker run --name jenkins-sample -d -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -p 8081:8080 jenkins/jenkins:lts 
 ```
 
-2. We should install docker in Jenkins container in order to use docker in our pipelines (Docker in Docker).
+1. We should install docker in Jenkins container in order to use docker in our pipelines (Docker in Docker). Check required packages on [Jenkins Dockerfile](../docker/jenkins/Dockerfile)
 
-```bash
-$ docker run --name jenkins-sample -d -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -p 8081:8080 jenkins/jenkins:lts 
-```
+2. Once Jenkins started, you can configure it at http://localhost:8081
 
-1. Once Jenkins started, you can configure it at http://localhost:8081
+3. Create a new job. When you configure the pipeline you have to specify the link of the git repo and the Jenkinsfile.
 
-2. Create a new job. When you configure the pipeline you have to specify the link of the repo git and the Jenkinsfile.
-
-3. Run build job
+4. Run build job
 
 **Pipeline:**
 
@@ -114,6 +117,11 @@ $ docker run --name jenkins-sample -d -v jenkins_home:/var/jenkins_home -v /var/
 You can also trigger a Jenkins build every time changes are pushed to a Git branch on GitHub using GitHub hooks. But in our case we trigger build periodically (each hour).
 
 ![triggers](./steps/triggers.png)
+
+**Running builds**
+
+![stages](./steps/stages.png)
+
 
 ## Author
 
