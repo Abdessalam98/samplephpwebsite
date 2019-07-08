@@ -89,7 +89,7 @@ $ docker-compose exec -T php phpunit tests/sampleTest.php
 
 ## 👷 CI with Jenkins
 
-When you started containers, Jenkins was launched on a docker container running at http://localhost:8080. You can modify `./docker-compose.yml` if you want.
+When you started containers, Jenkins was launched on a docker container running at http://localhost:8081. You can modify `./docker-compose.yml` if you want.
 
 You can also remove it from `./docker-compose.yml` and run this command on your terminal. 
 
